@@ -1,0 +1,313 @@
+/* ===========================================================
+   M&A Fabricaciones — sistema de diseño compartido
+   Mismo lenguaje visual que los brochures de producto.
+   =========================================================== */
+
+:root{
+  --ink:#141414;
+  --paper:#ffffff;
+  --paper-2:#f2f4f7;
+  --blue:#004aad;
+  --blue-light:#4f86dd;
+  --line:#e1e4ea;
+  --muted:#666c76;
+  --max:1180px;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%; display:block}
+a{color:inherit}
+.wrap{max-width:var(--max); margin:0 auto; padding:0 20px}
+
+h1,h2,h3,h4{
+  font-family:"Oswald",sans-serif;
+  text-transform:uppercase;
+  margin:0;
+  line-height:1.08;
+}
+.eyebrow{
+  font-family:"Oswald",sans-serif; font-weight:600; text-transform:uppercase;
+  font-size:12.5px; letter-spacing:.16em; color:var(--blue); margin:0 0 8px 0;
+}
+p{margin:0 0 1em 0}
+.muted{color:var(--muted)}
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  font-family:"Oswald",sans-serif; text-transform:uppercase; letter-spacing:.04em;
+  font-size:14.5px; font-weight:600; border-radius:8px; padding:13px 24px;
+  border:1px solid transparent; cursor:pointer; text-decoration:none;
+  transition:transform .15s ease, opacity .15s ease;
+}
+.btn:active{transform:scale(.97)}
+.btn-primary{background:var(--blue); color:#fff}
+.btn-primary:hover{opacity:.92}
+.btn-dark{background:var(--ink); color:#fff}
+.btn-dark:hover{opacity:.88}
+.btn-outline{background:transparent; color:var(--ink); border-color:var(--line)}
+.btn-outline:hover{border-color:var(--ink)}
+.btn-wsp{background:#25D366; color:#073012}
+.btn-wsp:hover{opacity:.92}
+.btn[disabled]{opacity:.4; cursor:not-allowed}
+
+/* ---------- header / nav ---------- */
+.site-header{
+  position:sticky; top:0; z-index:40; background:rgba(20,20,20,.97);
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.site-header .wrap{display:flex; align-items:center; justify-content:space-between; height:72px}
+.brand{display:flex; align-items:center; gap:10px; text-decoration:none}
+.brand img{height:30px; width:auto}
+nav.main-nav{display:flex; align-items:center; gap:28px}
+nav.main-nav a{
+  color:#fff; text-decoration:none; font-family:"Oswald",sans-serif;
+  text-transform:uppercase; font-size:13.5px; letter-spacing:.06em; opacity:.85;
+}
+nav.main-nav a:hover{opacity:1}
+.nav-cart{
+  position:relative; background:var(--blue); color:#fff; border:none; border-radius:8px;
+  width:42px; height:42px; display:flex; align-items:center; justify-content:center;
+  cursor:pointer; font-size:18px;
+}
+.nav-cart .count{
+  position:absolute; top:-6px; right:-6px; background:#ff5a3c; color:#fff;
+  font-size:11px; font-weight:700; border-radius:50%; min-width:19px; height:19px;
+  display:flex; align-items:center; justify-content:center; padding:0 3px;
+  font-family:"Inter",sans-serif;
+}
+.nav-right{display:flex; align-items:center; gap:16px}
+.nav-toggle{display:none; background:none; border:none; color:#fff; font-size:24px; cursor:pointer}
+
+@media (max-width:860px){
+  nav.main-nav{
+    position:fixed; inset:72px 0 0 0; background:var(--ink); flex-direction:column;
+    align-items:flex-start; padding:28px 24px; gap:22px; transform:translateX(100%);
+    transition:transform .25s ease; overflow-y:auto;
+  }
+  nav.main-nav.open{transform:translateX(0)}
+  nav.main-nav a{font-size:18px}
+  .nav-toggle{display:block}
+}
+
+/* ---------- sections ---------- */
+section{padding:72px 0}
+section.tight{padding:48px 0}
+.section-head{max-width:640px; margin-bottom:40px}
+.section-head.center{margin-left:auto; margin-right:auto; text-align:center}
+.section-head h2{font-size:clamp(26px,4vw,38px)}
+.section-head p{color:var(--muted); font-size:16px; margin-top:12px}
+
+.bg-ink{background:var(--ink); color:#fff}
+.bg-ink .eyebrow{color:var(--blue-light)}
+.bg-ink .muted{color:rgba(255,255,255,.65)}
+.bg-paper-2{background:var(--paper-2)}
+
+/* ---------- hero (home) ---------- */
+.hero{
+  position:relative; background:var(--ink); color:#fff; overflow:hidden;
+  padding:64px 0 80px 0;
+}
+.hero .wrap{position:relative; z-index:2}
+.hero-grid{display:grid; grid-template-columns:1.1fr .9fr; gap:48px; align-items:center}
+.hero h1{font-size:clamp(34px,5.2vw,58px); margin-bottom:18px}
+.hero h1 .accent{color:var(--blue-light)}
+.hero .lead{font-size:17.5px; color:rgba(255,255,255,.82); max-width:46ch; margin-bottom:28px}
+.hero-actions{display:flex; gap:14px; flex-wrap:wrap}
+.hero-photo{
+  border-radius:12px; overflow:hidden; aspect-ratio:4/5; background:#000;
+  box-shadow:0 20px 50px rgba(0,0,0,.45);
+}
+.hero-photo img{width:100%; height:100%; object-fit:cover}
+.hero-stats{display:flex; gap:28px; margin-top:38px; flex-wrap:wrap}
+.hero-stats div{min-width:110px}
+.hero-stats .num{font-family:"Oswald",sans-serif; font-size:28px; font-weight:600; color:var(--blue-light)}
+.hero-stats .lbl{font-size:12.5px; color:rgba(255,255,255,.6); text-transform:uppercase; letter-spacing:.04em}
+
+@media (max-width:860px){
+  .hero-grid{grid-template-columns:1fr; gap:32px}
+  .hero-photo{aspect-ratio:16/10}
+}
+
+/* ---------- portfolio (trabajos a pedido) grid ---------- */
+.portfolio-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:22px}
+.pf-card{
+  background:var(--paper); border:1px solid var(--line); border-radius:12px; overflow:hidden;
+  display:flex; flex-direction:column;
+}
+.pf-photo{
+  aspect-ratio:4/3; background:var(--paper-2); border-bottom:1px solid var(--line);
+  display:flex; align-items:center; justify-content:center; flex-direction:column; gap:6px;
+  color:var(--muted); font-size:12.5px; text-align:center; padding:14px; overflow:hidden;
+}
+.pf-photo img{width:100%; height:100%; object-fit:cover}
+.pf-photo .ico{font-size:24px; opacity:.55}
+.pf-body{padding:20px 20px 22px 20px}
+.pf-body h3{font-size:16.5px; margin-bottom:8px; text-transform:none; letter-spacing:.01em}
+.pf-body p{font-size:14px; color:var(--muted); margin:0}
+.pf-tag{
+  display:inline-block; font-family:"Oswald",sans-serif; font-size:11px; letter-spacing:.08em;
+  text-transform:uppercase; color:var(--blue); background:rgba(0,74,173,.08);
+  padding:4px 9px; border-radius:20px; margin-bottom:10px;
+}
+
+@media (max-width:900px){ .portfolio-grid{grid-template-columns:1fr 1fr} }
+@media (max-width:620px){ .portfolio-grid{grid-template-columns:1fr} }
+
+/* ---------- catálogo CTA banner (home) ---------- */
+.cat-banner{
+  background:linear-gradient(135deg, var(--blue) 0%, #00327a 100%);
+  color:#fff; border-radius:16px; padding:44px 40px; display:flex; align-items:center;
+  justify-content:space-between; gap:28px; flex-wrap:wrap;
+}
+.cat-banner h2{font-size:clamp(22px,3.4vw,32px); margin-bottom:10px}
+.cat-banner p{color:rgba(255,255,255,.85); margin:0; max-width:48ch}
+.cat-banner .btn-dark{background:#fff; color:var(--ink)}
+
+/* ---------- catálogo grid ---------- */
+.cat-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px}
+.product-card{
+  background:var(--paper); border:1px solid var(--line); border-radius:14px; overflow:hidden;
+  display:flex; flex-direction:column; cursor:pointer; transition:box-shadow .15s ease, transform .15s ease;
+}
+.product-card:hover{box-shadow:0 12px 28px rgba(0,0,0,.1); transform:translateY(-2px)}
+.product-card .ph{aspect-ratio:1/1; background:var(--paper-2); overflow:hidden}
+.product-card .ph img{width:100%; height:100%; object-fit:cover}
+.product-card .pc-body{padding:18px 18px 20px 18px}
+.product-card h3{font-size:16px; text-transform:none; margin-bottom:6px}
+.product-card .pc-tag{font-size:12.5px; color:var(--muted); margin-bottom:10px}
+.product-card .pc-price{font-family:"Oswald",sans-serif; font-weight:600; font-size:14px; color:var(--blue)}
+
+@media (max-width:900px){ .cat-grid{grid-template-columns:1fr 1fr} }
+@media (max-width:560px){ .cat-grid{grid-template-columns:1fr} }
+
+/* ---------- product detail modal ---------- */
+.modal-overlay{
+  position:fixed; inset:0; background:rgba(10,10,10,.6); z-index:70;
+  display:none; align-items:flex-end; justify-content:center;
+}
+.modal-overlay.open{display:flex}
+.modal-panel{
+  background:#fff; width:100%; max-width:920px; max-height:92vh; overflow-y:auto;
+  border-radius:16px 16px 0 0; animation:slideUp .22s ease;
+}
+@media (min-width:720px){
+  .modal-overlay{align-items:center}
+  .modal-panel{border-radius:16px; margin:20px}
+}
+@keyframes slideUp{from{transform:translateY(24px); opacity:0} to{transform:translateY(0); opacity:1}}
+.modal-close{
+  position:absolute; top:16px; right:16px; background:#fff; border:1px solid var(--line);
+  border-radius:50%; width:36px; height:36px; font-size:18px; cursor:pointer; z-index:2;
+}
+.modal-body{position:relative; display:grid; grid-template-columns:1fr 1fr}
+@media (max-width:720px){ .modal-body{grid-template-columns:1fr} }
+.modal-gallery{background:var(--paper-2)}
+.modal-gallery .main-photo{aspect-ratio:1/1; overflow:hidden}
+.modal-gallery .main-photo img{width:100%; height:100%; object-fit:cover}
+.modal-thumbs{display:flex; gap:8px; padding:10px; overflow-x:auto}
+.modal-thumbs img{
+  width:58px; height:58px; object-fit:cover; border-radius:6px; cursor:pointer;
+  border:2px solid transparent; flex-shrink:0;
+}
+.modal-thumbs img.active{border-color:var(--blue)}
+.modal-info{padding:28px 28px 32px 28px}
+.modal-info h2{font-size:24px; text-transform:none; margin-bottom:10px}
+.modal-info .desc{font-size:14.5px; color:var(--muted); margin-bottom:22px}
+
+.variant-group{margin-bottom:22px}
+.variant-group label.vg-label{
+  display:block; font-family:"Oswald",sans-serif; font-size:12.5px; text-transform:uppercase;
+  letter-spacing:.06em; color:var(--ink); margin-bottom:10px;
+}
+.variant-options{display:flex; gap:8px; flex-wrap:wrap}
+.variant-opt{
+  border:1.5px solid var(--line); border-radius:8px; padding:9px 14px; font-size:13.5px;
+  cursor:pointer; background:#fff; font-family:"Inter"; transition:all .12s ease;
+}
+.variant-opt:hover{border-color:var(--ink)}
+.variant-opt.selected{border-color:var(--blue); background:rgba(0,74,173,.07); color:var(--blue); font-weight:600}
+.variant-note{font-size:12.5px; color:var(--muted); margin-top:10px}
+
+.qty-row{display:flex; align-items:center; gap:14px; margin-bottom:22px}
+.qty-ctrl{display:flex; align-items:center; border:1px solid var(--line); border-radius:8px; overflow:hidden}
+.qty-ctrl button{
+  width:38px; height:38px; border:none; background:var(--paper-2); font-size:17px; cursor:pointer;
+}
+.qty-ctrl input{
+  width:42px; text-align:center; border:none; font-size:15px; font-family:"Inter"; -moz-appearance:textfield;
+}
+.price-line{font-family:"Oswald",sans-serif; font-size:19px; font-weight:600; color:var(--ink)}
+.price-line .unit{font-size:12.5px; color:var(--muted); font-family:"Inter"; font-weight:400; display:block; margin-top:2px}
+
+/* ---------- cart drawer ---------- */
+.cart-overlay{
+  position:fixed; inset:0; background:rgba(10,10,10,.5); z-index:80; display:none;
+}
+.cart-overlay.open{display:block}
+.cart-drawer{
+  position:fixed; top:0; right:0; bottom:0; width:100%; max-width:420px; background:#fff;
+  z-index:81; display:flex; flex-direction:column; transform:translateX(100%);
+  transition:transform .25s ease; box-shadow:-10px 0 30px rgba(0,0,0,.2);
+}
+.cart-overlay.open .cart-drawer{transform:translateX(0)}
+.cart-head{
+  padding:20px 22px; border-bottom:1px solid var(--line); display:flex;
+  align-items:center; justify-content:space-between;
+}
+.cart-head h3{font-size:17px; text-transform:none}
+.cart-head button{background:none; border:none; font-size:20px; cursor:pointer}
+.cart-items{flex:1; overflow-y:auto; padding:14px 22px}
+.cart-item{display:flex; gap:12px; padding:14px 0; border-bottom:1px solid var(--line)}
+.cart-item img{width:64px; height:64px; object-fit:cover; border-radius:8px; background:var(--paper-2)}
+.cart-item .ci-info{flex:1}
+.cart-item h4{font-size:14px; font-weight:600; margin:0 0 3px 0}
+.cart-item .ci-variant{font-size:12.5px; color:var(--muted); margin-bottom:6px}
+.cart-item .ci-remove{font-size:12px; color:#c0392b; cursor:pointer; background:none; border:none; padding:0}
+.cart-empty{padding:40px 10px; text-align:center; color:var(--muted); font-size:14px}
+.cart-foot{padding:18px 22px 24px 22px; border-top:1px solid var(--line)}
+.cart-foot .btn{width:100%}
+.cart-foot .hint{font-size:12px; color:var(--muted); text-align:center; margin-top:10px}
+
+/* ---------- toast ---------- */
+.toast{
+  position:fixed; bottom:24px; left:50%; transform:translateX(-50%) translateY(20px);
+  background:var(--ink); color:#fff; padding:13px 22px; border-radius:30px; font-size:14px;
+  opacity:0; pointer-events:none; transition:all .25s ease; z-index:90; white-space:nowrap;
+}
+.toast.show{opacity:1; transform:translateX(-50%) translateY(0)}
+
+/* ---------- footer ---------- */
+footer.site-footer{background:var(--ink); color:rgba(255,255,255,.7); padding:48px 0 28px 0}
+.footer-grid{display:grid; grid-template-columns:1.3fr 1fr 1fr; gap:32px; margin-bottom:36px}
+.footer-grid h4{color:#fff; font-size:13px; letter-spacing:.06em; margin-bottom:14px}
+.footer-grid ul{list-style:none; margin:0; padding:0}
+.footer-grid li{margin-bottom:9px; font-size:14px}
+.footer-grid a{text-decoration:none; color:rgba(255,255,255,.7)}
+.footer-grid a:hover{color:#fff}
+.footer-bottom{
+  border-top:1px solid rgba(255,255,255,.12); padding-top:20px; display:flex;
+  justify-content:space-between; flex-wrap:wrap; gap:10px; font-size:12.5px; color:rgba(255,255,255,.45);
+}
+@media (max-width:700px){ .footer-grid{grid-template-columns:1fr} }
+
+/* ---------- floating whatsapp ---------- */
+.fab-wsp{
+  position:fixed; bottom:22px; right:22px; z-index:50; background:#25D366; color:#fff;
+  width:56px; height:56px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+  font-size:26px; text-decoration:none; box-shadow:0 8px 20px rgba(0,0,0,.25);
+}
+
+/* ---------- generic placeholder photo block ---------- */
+.ph-placeholder{
+  border:1.5px dashed var(--line); background:var(--paper-2); color:var(--muted);
+  display:flex; align-items:center; justify-content:center; flex-direction:column; gap:6px;
+  font-size:12.5px; text-align:center; padding:14px; width:100%; height:100%;
+}
