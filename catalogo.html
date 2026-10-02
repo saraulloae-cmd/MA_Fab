@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Catálogo — M&A Fabricaciones</title>
+<meta name="description" content="Catálogo de productos M&A Fabricaciones: ganchos skid, adaptadores y más, con modelos y medidas para elegir.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="index.html" class="brand"><img src="assets/img/brand/logo.png" alt="M&A Fabricaciones"></a>
+    <nav class="main-nav" id="main-nav">
+      <a href="index.html">Inicio</a>
+      <a href="index.html#trabajos">Trabajos a pedido</a>
+      <a href="catalogo.html">Catálogo</a>
+      <a href="index.html#contacto">Contacto</a>
+    </nav>
+    <div class="nav-right">
+      <button class="nav-cart" aria-label="Carrito">🛒<span class="count">0</span></button>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Menú">☰</button>
+    </div>
+  </div>
+</header>
+
+<section class="bg-ink tight">
+  <div class="wrap">
+    <p class="eyebrow">Catálogo</p>
+    <h1 style="font-size:clamp(28px,4.5vw,42px); margin-bottom:12px">Productos listos para pedir</h1>
+    <p class="muted" style="max-width:56ch">Elegí el modelo o la medida de cada producto, armá tu pedido y coordinamos precio y pago directo por WhatsApp — sin pasarela de pago online.</p>
+  </div>
+</section>
+
+<section class="tight">
+  <div class="wrap">
+    <div class="cat-grid" id="catalog-grid"></div>
+  </div>
+</section>
+
+<section class="bg-paper-2 tight">
+  <div class="wrap" style="text-align:center">
+    <p class="eyebrow">¿No encontrás lo que buscás?</p>
+    <h2 style="font-size:24px; margin-bottom:14px">Hacemos trabajos a pedido</h2>
+    <p class="muted" style="max-width:48ch; margin:0 auto 22px auto">Este catálogo es solo una parte de lo que hacemos. Si necesitás una pieza a medida, contanos el problema.</p>
+    <a href="index.html#trabajos" class="btn btn-outline">Ver trabajos a pedido</a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <img src="assets/img/brand/logo.png" alt="M&A Fabricaciones" style="height:28px; margin-bottom:12px; background:#fff; padding:6px 10px; border-radius:6px">
+        <p style="font-size:13.5px; max-width:36ch">Mecanizado y fabricación a medida. Trabajos a pedido y productos de catálogo para el mundo industrial y off-road.</p>
+      </div>
+      <div>
+        <h4>Navegación</h4>
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="index.html#trabajos">Trabajos a pedido</a></li>
+          <li><a href="catalogo.html">Catálogo</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <ul>
+          <li><a href="#" class="js-wsp-contact">WhatsApp</a></li>
+          <li><a href="#" id="footer-instagram">Instagram</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span class="js-year"></span> M&A Fabricaciones</span>
+      <span>Argentina</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ===================== MODAL PRODUCTO ===================== -->
+<div class="modal-overlay" id="product-modal">
+  <div class="modal-panel">
+    <button class="modal-close" id="modal-close-btn">✕</button>
+    <div class="modal-body" id="modal-body-content"></div>
+  </div>
+</div>
+
+<!-- ===================== CARRITO (drawer) ===================== -->
+<div class="cart-overlay" id="cart-overlay">
+  <div class="cart-drawer">
+    <div class="cart-head">
+      <h3>Tu pedido</h3>
+      <button id="cart-close-btn" aria-label="Cerrar">✕</button>
+    </div>
+    <div class="cart-items" id="cart-items"></div>
+    <div class="cart-foot">
+      <button class="btn btn-wsp" id="cart-checkout-btn">Pedir por WhatsApp</button>
+      <p class="hint">Coordinamos precio y forma de pago por WhatsApp.</p>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="assets/js/config.js"></script>
+<script src="assets/js/products.js"></script>
+<script src="assets/js/cart.js"></script>
+<script src="assets/js/catalog.js"></script>
+<script src="assets/js/main.js"></script>
+<script>
+  document.querySelectorAll(".js-wsp-contact").forEach((a) => {
+    a.href = "https://wa.me/" + SITE_CONFIG.whatsappNumber + "?text=" + encodeURIComponent("Hola " + SITE_CONFIG.businessName + "! Quería hacerles una consulta.");
+  });
+  const ig = document.getElementById("footer-instagram");
+  if (ig && SITE_CONFIG.instagram) ig.href = SITE_CONFIG.instagram;
+</script>
+</body>
+</html>
