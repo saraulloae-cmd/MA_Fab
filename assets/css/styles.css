@@ -65,7 +65,7 @@ p{margin:0 0 1em 0}
 }
 .site-header .wrap{display:flex; align-items:center; justify-content:space-between; height:72px}
 .brand{display:flex; align-items:center; gap:10px; text-decoration:none}
-.brand img{height:30px; width:auto}
+.brand img{height:42px; width:auto}
 nav.main-nav{display:flex; align-items:center; gap:28px}
 nav.main-nav a{
   color:#fff; text-decoration:none; font-family:"Oswald",sans-serif;
