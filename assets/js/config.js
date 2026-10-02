@@ -8,9 +8,9 @@ const SITE_CONFIG = {
   // Número de WhatsApp SIN signos, con código de país.
   // Formato: 54 9 + código de área (sin el 0) + número (sin el 15)
   // Ejemplo Buenos Aires: 5491123456789
-  whatsappNumber: "5491100000000", // <-- TODO: reemplazar por el número real
+  whatsappNumber: "5491154089315", // <-- TODO: reemplazar por el número real
 
   businessName: "M&A Fabricaciones",
-  instagram: "https://instagram.com/", // <-- TODO: completar usuario
+  instagram: "https://instagram.com/ma_fabricaciones/", // <-- TODO: completar usuario
   email: "", // opcional
 };
