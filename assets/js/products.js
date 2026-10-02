@@ -27,7 +27,7 @@ const PRODUCTS = [
           { id: "estandar", label: "Estándar (A=19mm)" },
           { id: "slim", label: "Slim (A=35mm)" },
           { id: "wide", label: "Wide (A=52mm)" }
-          { id: "ford", label: "Especial Ranger Raptor"},
+          { id: "ford", label: "Especial Ranger Raptor" },
         ],
       },
     ],
