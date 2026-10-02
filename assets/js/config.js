@@ -12,5 +12,5 @@ const SITE_CONFIG = {
 
   businessName: "M&A Fabricaciones",
   instagram: "https://instagram.com/ma_fabricaciones/", // <-- TODO: completar usuario
-  email: "", // opcional
+  email: "mafabricaciones@gmail.com", // opcional
 };
