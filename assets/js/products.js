@@ -33,7 +33,7 @@ const PRODUCTS = [
     ],
     note:
       "¿No sabés qué modelo elegir? Mandanos una foto del receptor de tu vehículo y te ayudamos a definirlo.",
-    price: null,
+    price: 240000,
   },
   {
     id: "adaptador-grillete-soft",
@@ -53,14 +53,13 @@ const PRODUCTS = [
         key: "medida",
         label: "Medida del receptor (mm)",
         options: [
-          { id: "35", label: "35 mm" },
-          { id: "40", label: "40 mm" },
-          { id: "45", label: "45 mm" },
-          { id: "50", label: "50 mm" },
-          { id: "55", label: "55 mm" },
-          { id: "60", label: "60 mm" },
-          { id: "65", label: "65 mm" },
-          { id: "70", label: "70 mm" },
+          { id: "35", label: "20 mm" },
+          { id: "40", label: "25 mm" },
+          { id: "45", label: "30 mm" },
+          { id: "50", label: "35 mm" },
+          { id: "55", label: "40 mm" },
+          { id: "60", label: "45 mm" },
+          { id: "65", label: "50 mm" },
         ],
       },
       {
@@ -74,6 +73,6 @@ const PRODUCTS = [
     ],
     note:
       "La medida se toma en el receptor según el esquema. Fabricamos a la medida exacta que nos envíes.",
-    price: null,
+    price: 18000,
   },
 ];
