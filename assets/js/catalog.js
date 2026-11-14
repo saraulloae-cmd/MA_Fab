@@ -8,6 +8,17 @@ let currentSelection = {}; // { groupKey: optionId }
 let currentImageIndex = 0;
 let currentAddons = {}; // { addonId: qty }
 
+function hasPriceOptions(p) {
+  return p.variantGroups.some((g) => g.options.some((o) => o.priceAdd));
+}
+
+function variantsTotal() {
+  return currentProduct.variantGroups.reduce((sum, g) => {
+    const opt = g.options.find((o) => o.id === currentSelection[g.key]);
+    return sum + (opt && opt.priceAdd ? opt.priceAdd : 0);
+  }, 0);
+}
+
 function renderCatalogGrid() {
   const grid = document.getElementById("catalog-grid");
   if (!grid) return;
@@ -18,7 +29,7 @@ function renderCatalogGrid() {
       <div class="pc-body">
         <h3>${p.name}</h3>
         <div class="pc-tag">${p.tagline}</div>
-        <div class="pc-price">${p.price ? formatPrice(p.price) : "Consultar precio"}</div>
+        <div class="pc-price">${p.price ? (hasPriceOptions(p) ? "Desde " : "") + formatPrice(p.price) : "Consultar precio"}</div>
       </div>
     </div>`
   ).join("");
@@ -61,6 +72,7 @@ function selectVariant(groupKey, optionId) {
       el.classList.toggle("selected", el.dataset.opt === optionId);
     }
   );
+  updatePriceLine();
 }
 
 function changeQty(delta) {
@@ -77,7 +89,7 @@ function addonsTotal() {
 }
 
 function currentUnitPrice() {
-  return currentProduct.price ? currentProduct.price + addonsTotal() : null;
+  return currentProduct.price ? currentProduct.price + variantsTotal() + addonsTotal() : null;
 }
 
 function updatePriceLine() {
@@ -188,7 +200,7 @@ function renderModal() {
           <button type="button" onclick="changeQty(1)">+</button>
         </div>
         <div class="price-line">
-          <span id="price-amount">${p.price ? formatPrice(p.price) : "A consultar"}</span>
+          <span id="price-amount">${p.price ? formatPrice(currentUnitPrice()) : "A consultar"}</span>
           <span class="unit">el envío y el pago se coordinan por WhatsApp</span>
         </div>
       </div>
