@@ -3,13 +3,10 @@
    a partir de PRODUCTS (ver products.js)
    ========================================================= */
 
-function formatPrice(n) {
-  return "$" + Number(n).toLocaleString("es-AR");
-}
-
 let currentProduct = null;
 let currentSelection = {}; // { groupKey: optionId }
 let currentImageIndex = 0;
+let currentAddons = {}; // { addonId: qty }
 
 function renderCatalogGrid() {
   const grid = document.getElementById("catalog-grid");
@@ -33,6 +30,7 @@ function openProductModal(productId) {
   currentProduct = p;
   currentImageIndex = 0;
   currentSelection = {};
+  currentAddons = {};
   p.variantGroups.forEach((g) => {
     currentSelection[g.key] = g.options[0].id;
   });
@@ -70,6 +68,32 @@ function changeQty(delta) {
   let v = parseInt(input.value || "1", 10) + delta;
   if (v < 1) v = 1;
   input.value = v;
+  updatePriceLine();
+}
+
+function addonsTotal() {
+  const p = currentProduct;
+  return (p.addons || []).reduce((sum, a) => sum + a.price * (currentAddons[a.id] || 0), 0);
+}
+
+function currentUnitPrice() {
+  return currentProduct.price ? currentProduct.price + addonsTotal() : null;
+}
+
+function updatePriceLine() {
+  const el = document.getElementById("price-amount");
+  if (!el) return;
+  const qty = parseInt(document.getElementById("qty-input").value || "1", 10);
+  const unit = currentUnitPrice();
+  el.textContent = unit ? formatPrice(unit * qty) : "A consultar";
+}
+
+function changeAddon(id, delta) {
+  const v = Math.max(0, (currentAddons[id] || 0) + delta);
+  currentAddons[id] = v;
+  const el = document.getElementById("addon-qty-" + id);
+  if (el) el.textContent = v;
+  updatePriceLine();
 }
 
 function addCurrentToCart() {
@@ -80,12 +104,18 @@ function addCurrentToCart() {
       return `${g.label}: ${opt.label}`;
     })
     .join(" · ");
+  const extras = (p.addons || [])
+    .filter((a) => currentAddons[a.id] > 0)
+    .map((a) => `${currentAddons[a.id]}× ${a.label}`)
+    .join(", ");
+  const label = [variantLabel, extras ? "Extras: " + extras : ""].filter(Boolean).join(" · ");
   const qty = parseInt(document.getElementById("qty-input").value || "1", 10);
 
   cartAdd({
     productId: p.id,
     name: p.name,
-    variantLabel,
+    variantLabel: label || "Estándar",
+    unitPrice: currentUnitPrice(),
     qty,
     image: p.images[0],
   });
@@ -114,6 +144,25 @@ function renderModal() {
     )
     .join("");
 
+  const addonHtml = (p.addons || []).length
+    ? `<div class="variant-group">
+      <label class="vg-label">Extras opcionales</label>
+      ${p.addons
+        .map(
+          (a) => `
+        <div class="addon-row">
+          <div class="addon-name">${a.label}<span>+ ${formatPrice(a.price)} c/u</span></div>
+          <div class="qty-ctrl small">
+            <button type="button" onclick="changeAddon('${a.id}',-1)">−</button>
+            <span class="addon-qty" id="addon-qty-${a.id}">0</span>
+            <button type="button" onclick="changeAddon('${a.id}',1)">+</button>
+          </div>
+        </div>`
+        )
+        .join("")}
+    </div>`
+    : "";
+
   body.innerHTML = `
     <div class="modal-gallery">
       <div class="main-photo"><img id="modal-main-photo" src="${p.images[0]}" alt="${p.name}"></div>
@@ -130,6 +179,7 @@ function renderModal() {
       <h2>${p.name}</h2>
       <p class="desc">${p.description}</p>
       ${variantHtml}
+      ${addonHtml}
       ${p.note ? `<p class="variant-note">${p.note}</p>` : ""}
       <div class="qty-row">
         <div class="qty-ctrl">
@@ -138,8 +188,8 @@ function renderModal() {
           <button type="button" onclick="changeQty(1)">+</button>
         </div>
         <div class="price-line">
-          ${p.price ? formatPrice(p.price) : "A consultar"}
-          <span class="unit">precio y pago se coordinan por WhatsApp</span>
+          <span id="price-amount">${p.price ? formatPrice(p.price) : "A consultar"}</span>
+          <span class="unit">el envío y el pago se coordinan por WhatsApp</span>
         </div>
       </div>
       <button class="btn btn-primary" style="width:100%" onclick="addCurrentToCart()">Agregar al carrito</button>
