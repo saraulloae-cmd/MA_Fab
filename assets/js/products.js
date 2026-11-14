@@ -11,14 +11,14 @@ const PRODUCTS = [
     name: "Base Universal para Accesorios",
     tagline: "GPS, celular y cámara al mismo tiempo, sin ocupar el parabrisas",
     description:
-      "Una sola base sobre el tablero para montar GPS, celular y cámara a la vez. Se apoya en tres patas con cinta adhesiva 3M de alta adherencia, por eso sirve en casi cualquier vehículo. Soporta bastante peso (lo probamos).<br><br>" +
+      "Una sola base sobre el tablero para montar GPS, celular y cámara a la vez. Se apoya en tres patas con cinta adhesiva 3M de alta adherencia, por eso sirve en casi cualquier vehículo. Soporta cómodamente dos GPS's y una cámara de acción a la vez.<br><br>" +
       "<strong>Qué resuelve</strong><br>" +
       "• No ocupa espacio en el parabrisas.<br>" +
       "• No hay que agujerear nada.<br>" +
       "• Se puede retirar dejando las patas pegadas, si hace falta.<br>" +
       "• Compatible con accesorios RAM Mount.<br>" +
       "• Montaje GoPro integrado y riel para GPS.<br>" +
-      "• Dos insertos de bronce M5 embutidos en la pieza.<br><br>" +
+      "• Montajes roscados M5 para múltiples accesorios.<br><br>" +
       "<strong>Incluye</strong><br>" +
       "• Base con patas adhesivas 3M.<br>" +
       "• Dos bochas (17 mm y 1″).<br>" +
