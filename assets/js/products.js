@@ -104,7 +104,7 @@ const PRODUCTS = [
         key: "perno",
         label: "Perno de 16mm",
         options: [
-          { id: "con-perno", label: "Incluido" },
+          { id: "con-perno", label: "Incluido (+ $16.000)", priceAdd: 16000 },
           { id: "sin-perno", label: "No incluido" },
         ],
       },
