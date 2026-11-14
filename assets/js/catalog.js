@@ -3,6 +3,10 @@
    a partir de PRODUCTS (ver products.js)
    ========================================================= */
 
+function formatPrice(n) {
+  return "$" + Number(n).toLocaleString("es-AR");
+}
+
 let currentProduct = null;
 let currentSelection = {}; // { groupKey: optionId }
 let currentImageIndex = 0;
@@ -17,7 +21,7 @@ function renderCatalogGrid() {
       <div class="pc-body">
         <h3>${p.name}</h3>
         <div class="pc-tag">${p.tagline}</div>
-        <div class="pc-price">${p.price ? p.price : "Consultar precio"}</div>
+        <div class="pc-price">${p.price ? formatPrice(p.price) : "Consultar precio"}</div>
       </div>
     </div>`
   ).join("");
@@ -134,7 +138,7 @@ function renderModal() {
           <button type="button" onclick="changeQty(1)">+</button>
         </div>
         <div class="price-line">
-          ${p.price ? p.price : "A consultar"}
+          ${p.price ? formatPrice(p.price) : "A consultar"}
           <span class="unit">precio y pago se coordinan por WhatsApp</span>
         </div>
       </div>

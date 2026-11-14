@@ -37,7 +37,7 @@ const PRODUCTS = [
     variantGroups: [],
     note:
       "¿Dudas si entra en el tablero de tu vehículo? Mandanos una foto y te confirmamos.",
-    price: null,
+    price: 45600,
   },
   {
     id: "gancho-skid",
