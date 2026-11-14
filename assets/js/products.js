@@ -7,6 +7,39 @@
 
 const PRODUCTS = [
   {
+    id: "base-universal",
+    name: "Base Universal para Accesorios",
+    tagline: "GPS, celular y cámara al mismo tiempo, sin ocupar el parabrisas",
+    description:
+      "Una sola base sobre el tablero para montar GPS, celular y cámara a la vez. Se apoya en tres patas con cinta adhesiva 3M de alta adherencia, por eso sirve en casi cualquier vehículo. Soporta bastante peso (lo probamos).<br><br>" +
+      "<strong>Qué resuelve</strong><br>" +
+      "• No ocupa espacio en el parabrisas.<br>" +
+      "• No hay que agujerear nada.<br>" +
+      "• Se puede retirar dejando las patas pegadas, si hace falta.<br>" +
+      "• Compatible con accesorios RAM Mount.<br>" +
+      "• Montaje GoPro integrado y riel para GPS.<br>" +
+      "• Dos insertos de bronce M5 embutidos en la pieza.<br><br>" +
+      "<strong>Incluye</strong><br>" +
+      "• Base con patas adhesivas 3M.<br>" +
+      "• Dos bochas (17 mm y 1″).<br>" +
+      "• Llave allen para las bochas.<br><br>" +
+      "<strong>Instalación</strong><br>" +
+      "Se pega con la cinta adhesiva. Para removerla, seguí las instrucciones de 3M. No incluye soportes de GPS, celular ni cámara.",
+    images: [
+      "assets/img/products/base-universal/cover.jpg",
+      "assets/img/products/base-universal/tres-a-la-vez.jpg",
+      "assets/img/products/base-universal/uso-1.jpg",
+      "assets/img/products/base-universal/gopro.jpg",
+      "assets/img/products/base-universal/detalle.jpg",
+      "assets/img/products/base-universal/detalle-2.jpg",
+      "assets/img/products/base-universal/tablero.jpg",
+    ],
+    variantGroups: [],
+    note:
+      "¿Dudas si entra en el tablero de tu vehículo? Mandanos una foto y te confirmamos.",
+    price: null,
+  },
+  {
     id: "gancho-skid",
     name: "Gancho Skid — Patín de Cola",
     tagline: "Protección y anclaje para receptor de 2″",
