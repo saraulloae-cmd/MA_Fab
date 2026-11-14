@@ -4,6 +4,10 @@
    un mensaje con el detalle del carrito y abre WhatsApp.
    ========================================================= */
 
+function formatPrice(n) {
+  return "$" + Number(n).toLocaleString("es-AR");
+}
+
 const CART_KEY = "ma_fab_cart_v1";
 
 function cartGet() {
@@ -73,6 +77,7 @@ function cartRenderAll() {
         <div class="ci-info">
           <h4>${item.name}</h4>
           <div class="ci-variant">${item.variantLabel} · cantidad: ${item.qty}</div>
+          ${item.unitPrice ? `<div class="ci-price">${formatPrice(item.unitPrice * item.qty)}</div>` : ""}
           <button class="ci-remove" onclick="cartRemove(${idx})">Quitar</button>
         </div>
       </div>`
@@ -80,8 +85,20 @@ function cartRenderAll() {
       .join("");
   }
 
+  const totalEl = document.getElementById("cart-total");
+  if (totalEl) {
+    const t = cartTotal();
+    totalEl.innerHTML = t !== null && items.length ? `Total: <strong>${formatPrice(t)}</strong><span>más envío</span>` : "";
+  }
+
   const waBtn = document.getElementById("cart-checkout-btn");
   if (waBtn) waBtn.disabled = items.length === 0;
+}
+
+function cartTotal() {
+  const items = cartGet();
+  if (items.some((i) => !i.unitPrice)) return null;
+  return items.reduce((sum, i) => sum + i.unitPrice * i.qty, 0);
 }
 
 function cartOpen() {
@@ -97,9 +114,12 @@ function buildWhatsAppMessage() {
   const items = cartGet();
   let msg = `Hola ${SITE_CONFIG.businessName}! Quiero hacer este pedido:\n\n`;
   items.forEach((item) => {
-    msg += `• ${item.name} — ${item.variantLabel} — cantidad: ${item.qty}\n`;
+    const price = item.unitPrice ? ` — ${formatPrice(item.unitPrice * item.qty)}` : "";
+    msg += `• ${item.name} — ${item.variantLabel} — cantidad: ${item.qty}${price}\n`;
   });
-  msg += `\n¿Me pasás precio y métodos de pago?`;
+  const total = cartTotal();
+  if (total !== null) msg += `\nTotal: ${formatPrice(total)} (sin envío)`;
+  msg += `\n\n¿Me confirmás el costo de envío y cómo pagar?`;
   return msg;
 }
 

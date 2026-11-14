@@ -35,8 +35,13 @@ const PRODUCTS = [
       "assets/img/products/base-universal/tablero.jpg",
     ],
     variantGroups: [],
+    addons: [
+      { id: "bocha-17", label: "Bocha adicional 17 mm", price: 4500 },
+      { id: "bocha-1", label: "Bocha adicional 1″", price: 4500 },
+      { id: "bocha-custom", label: "Bocha personalizada", price: 6500 },
+    ],
     note:
-      "¿Dudas si entra en el tablero de tu vehículo? Mandanos una foto y te confirmamos.",
+      "La bocha personalizada se define con nosotros por WhatsApp. ¿Dudas si entra en el tablero de tu vehículo? Mandanos una foto y te confirmamos.",
     price: 45600,
   },
   {
